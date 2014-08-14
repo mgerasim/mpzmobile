@@ -6,32 +6,32 @@
     <link rel="stylesheet" href="css/jquery.mobile.inline-png-1.4.3.min.css" type="text/css" media="screen"/>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.mobile-1.4.3.js"></script>
-    
+    <script src="js/core.js"></script>
 </head>
 <body>
 	<div data-role="page">
     	<div data-role="content">
-        	<div data-role="fieldcontain">
-				<label for="name">ФИО:</label>
-    			<input type="text" name="name" id="name" value=""  />
-			</div>
-            
-            <div data-role="fieldcontain">
+			<div id="name" data-role="fieldcontain">
+                <label for="name">ФИО:</label>
+                <input type="text" name="name" value=""  />
+            </div>
+
+            <div id="phone" data-role="fieldcontain">
 				<label for="name">Контактный номер:</label>
-    			<input type="tel" name="phone" id="phone" value=""  />
+    			<input type="tel" name="phone" value=""  />
 			</div>
             
-            <div data-role="fieldcontain">
+            <div id="address" data-role="fieldcontain">
 				<label for="name">Адрес:</label>
-    			<input type="text" name="address" id="address" value=""  />
+    			<input type="text" name="address" value=""  />
 			</div>
             
-            <div data-role="fieldcontain">
+            <div id="user" data-role="fieldcontain">
 				<label for="name">Фамилия агента:</label>
-    			<input type="text" name="user" id="user" value=""  />
+    			<input type="text" name="user" value=""  />
 			</div>
             
-            <a class="ui-shadow ui-btn-inline" href="#" data-role="button" data-theme="a" data-icon="check">
+            <a id="save" class="ui-shadow ui-btn-inline" href="#" data-role="button" data-theme="a" data-icon="check">
             	Сохранить
             </a> 
 			
