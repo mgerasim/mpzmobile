@@ -10,8 +10,21 @@ $request = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>".
 							"destSystem=\"1\" ".
 							"svcClassIdList=\"\" ".
 						"</request>";
+	
+$url = 'http://10.200.2.47:85/elk';
+$postData = array();
+$postData['xml'] = $request;
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+$result = curl_exec($ch);
+curl_close($ch);
+
 						
-echo $request = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+/*
 			
 echo $request;
 
@@ -30,5 +43,5 @@ $context  = stream_context_create($options);
 $result = file_get_contents($url, false, $context);
 
 var_dump($result);
-
+*/
 ?>
