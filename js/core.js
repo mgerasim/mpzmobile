@@ -6,7 +6,6 @@ $(document).ready(function () {
 	
 	$("#save").click(handleSave);
 	
-	initTariff();	
 });
 
 var handleSave = function handleSave() {
@@ -16,39 +15,29 @@ var handleSave = function handleSave() {
 	bOk = checkAddress();
 	bOk = checkUser();
 	if (bOk) {
-	
+		saveOrder();
 	}
 	else {
 	
 	}
+}
 
-}
-/* INIT */
-function initTariff() {
-	var xml_request = 	'<?xml version="1.0" encoding="UTF-8"?>' +
-						 '<request reqType="GET_AV_TARIFF_INFO" '+
-							'svcNum="q5345a22" ' +
-							'svcTypeId="INTERNET_LOGIN" ' +
-							'<SvcAddress ' +
-							'> '+
-							'infoType="2" ' +
-							'destSystem="1" ' +
-							'svcClassIdList="" ' +
-						'</request>';
-	$.ajax({
-		type: 'POST',
-		url: 'http://10.200.2.47:85/elk',
-		data: 'xml='+xml_request,
-		dataType: 'text',
-		success: function(responseData, textStatus, jqXHR) {
-        	var value = responseData.someKey;
-    	},
-    	error: function (responseData, textStatus, errorThrown) {
-        	alert('POST failed.');
-    	}
-	});
-	console.log(xml_request);
-}
+
+function saveOrder(){
+	$$a({
+	        type:'post',
+	        url:'saveorder.php',
+	        data:{'z':'1'},
+	        response:'text',
+	        success:function (data) {
+				
+	            $('#save_result').text = data;
+	        }
+	    });
+    
+  };
+  
+
 
 /* CHANGE */
 function handleNameChange() {
