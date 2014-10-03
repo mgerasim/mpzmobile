@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ru-RU" manifest="default.appcache">
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+</head>
+<body>
+	<form enctype="multipart/form-data" action="/apk.php" method="POST">
+    <!-- MAX_FILE_SIZE must precede the file input field -->
+    <input type="hidden" name="MAX_FILE_SIZE" value="9000000" />
+    <!-- Name of input element determines name in $_FILES array -->
+    Выбрать APK файл: <input name="apk" type="file" />	
+    <input type="submit" value="Загрузить" />
+</form>
+</body>
+</html>
+	
+  

@@ -1,47 +1,40 @@
 <?php
 
-$request = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>".
-						 "<request reqType=\"GET_AV_TARIFF_INFO\" ".
-							"svcNum=\"q5345a22\" ".
-							"svcTypeId=\"INTERNET_LOGIN\" ".
-							"<SvcAddress ".
-							"> ".
-							"infoType=\"2\" ".
-							"destSystem=\"1\" ".
-							"svcClassIdList=\"\" ".
-						"</request>";
-	
-$url = 'http://10.200.2.47:85/elk';
-$postData = array();
-$postData['xml'] = $request;
+$request = <<<ABS
+<CreateOrder>
+    <orders>
+        <order>
+            <Num>1</Num>
+            <Date>2013-10-28T00:00:00+06:00</Date>
+            <Client LastName="Бояндина" FirstName="Лариса" contactCellPhone="9241086744" contactHomePhone="4212322151"/>
+            <Product SvcClassId="2" TarId="103162" >                
+                <instAdrPhone>4212226062</instAdrPhone>                
+            </Product>
+            <ChannelId>3</ChannelId>
+        </order>
+    </orders>
+</CreateOrder>
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-$result = curl_exec($ch);
-curl_close($ch);
+ABS;
 
-						
-/*
-			
 echo $request;
 
-$url = 'http://10.200.2.47:85/elk';
+$url = 'https://10.184.86.13:8444/';
 $data = array('xml' => $request);
 
 // use key 'http' even if you send the request to https://...
 $options = array(
     'http' => array(
-        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+        'header'  => "Content-Type: text/xml; charset=UTF-8\r\nAccept: text/xml\r\nAccept-Charset: UTF-8\r\n",
         'method'  => 'POST',
-        'content' => http_build_query($data),
+        'content' => 'xml='.$request,
     ),
 );
+
+ 
 $context  = stream_context_create($options);
 $result = file_get_contents($url, false, $context);
 
 var_dump($result);
-*/
+
 ?>

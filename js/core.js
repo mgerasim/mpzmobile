@@ -1,5 +1,6 @@
 $(document).ready(function () {
-	$("#name input").keyup(handleNameChange);
+	$("#lastname input").keyup(handleLastNameChange);
+	$("#firstname input").keyup(handleFirstNameChange);
 	$("#phone input").keyup(handlePhoneChange);
 	$("#address input").keyup(handleAddressChange);
 	$("#user input").keyup(handleUserChange);
@@ -10,7 +11,8 @@ $(document).ready(function () {
 
 var handleSave = function handleSave() {
 	var bOk = false;
-	bOk = checkName();
+	bOk = checkLastName();
+	bOk = checkFirstName();
 	bOk = checkPhone();
 	bOk = checkAddress();
 	bOk = checkUser();
@@ -23,15 +25,14 @@ var handleSave = function handleSave() {
 }
 
 
-function saveOrder(){
-	$$a({
-	        type:'post',
-	        url:'saveorder.php',
-	        data:{'z':'1'},
+function saveOrder(){	
+	$.ajax({
+	        type:'POST',
+	        url:'/saveorder.php',
+	        data:{'lastname':$("#lastname input").val(), 'firstname':$("#firstname input").val(), 'secondname':$("#secondname input").val(), 'phone':$("#phone input").val(), 'address':$("#address input").val(), 'user':$("#user input").val(), 'tariff':$("#tariff input").val(), 'comments':$('#comments').val(), 'usluga-1':$('#checkbox-1a').is(':checked'), 'usluga-2':$('#checkbox-2a').is(':checked'), 'usluga-3':$('#checkbox-3a').is(':checked')  },
 	        response:'text',
 	        success:function (data) {
-				
-	            $('#save_result').text = data;
+				$('#save_result').text(data);
 	        }
 	    });
     
@@ -40,10 +41,15 @@ function saveOrder(){
 
 
 /* CHANGE */
-function handleNameChange() {
-	$("#name label").text("ФИО:");
-	$("#name label").css('color', 'black');
+function handleLastNameChange() {
+	$("#lastname label").text("Фамилия:");
+	$("#lastname label").css('color', 'black');
 }
+function handleFirstNameChange() {
+	$("#firstname label").text("Имя:");
+	$("#firstname label").css('color', 'black');
+}
+
 function handlePhoneChange() {
 	$("#phone label").text("Контактный телефон:");
 	$("#phone label").css('color', 'black');
@@ -58,10 +64,19 @@ function handleUserChange() {
 }
 
 /* CHECK */
-function checkName() {
-	if ($("#name input").val() == "") {
-		$("#name label").text("Укажите ФИО:");
-		$("#name label").css('color','red');
+function checkLastName() {
+	if ($("#lastname input").val() == "") {
+		$("#lastname label").text("Укажите фамилию:");
+		$("#lastname label").css('color','red');
+		return false;	
+	}
+	return true;
+}
+
+function checkFirstName() {
+	if ($("#firstname input").val() == "") {
+		$("#firstname label").text("Укажите имя:");
+		$("#firstname label").css('color','red');
 		return false;	
 	}
 	return true;
