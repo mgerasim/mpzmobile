@@ -25,11 +25,20 @@ var handleSave = function handleSave() {
 }
 
 
-function saveOrder(){	
+function saveOrder(){
+	var city = YMaps.location.city;	
+	var longitude = YMaps.location.longitude;
+	var	latitude = YMaps.location.latitude;
+	if (city =='') {
+		city = 'не определен';
+		longitude = 0;
+		latitude = 0;
+	}
+	console.log(city);
 	$.ajax({
 	        type:'POST',
 	        url:'/saveorder.php',
-	        data:{'lastname':$("#lastname input").val(), 'firstname':$("#firstname input").val(), 'secondname':$("#secondname input").val(), 'phone':$("#phone input").val(), 'address':$("#address input").val(), 'user':$("#user input").val(), 'tariff':$("#tariff input").val(), 'comments':$('#comments').val(), 'usluga-1':$('#checkbox-1a').is(':checked'), 'usluga-2':$('#checkbox-2a').is(':checked'), 'usluga-3':$('#checkbox-3a').is(':checked')  },
+	        data:{'lastname':$("#lastname input").val(), 'firstname':$("#firstname input").val(), 'secondname':$("#secondname input").val(), 'phone':$("#phone input").val(), 'address':$("#address input").val(), 'user':$("#user input").val(), 'tariff':$("#tariff input").val(), 'comments':$('#comments').val(), 'usluga-1':$('#checkbox-1a').is(':checked'), 'usluga-2':$('#checkbox-2a').is(':checked'), 'usluga-3':$('#checkbox-3a').is(':checked'), 'city':city, 'longitude':longitude, 'latitude':latitude  },
 	        response:'text',
 	        success:function (data) {
 				$('#save_result').text(data);

@@ -166,7 +166,7 @@ $dbconn = pg_connect("host=localhost dbname=postgres user=monter password=zaq12w
 	or die('Could not connect: ' . pg_last_error());
 	
 	$ver = pg_query($dbconn,
-"INSERT INTO mpz.orders(lastname, firstname, secondname, phone, address, \"user\", result, tariff, comments) VALUES ('{$_REQUEST['lastname']}', '{$_REQUEST['firstname']}','{$_REQUEST['secondname']}','{$_REQUEST['phone']}','{$_REQUEST['address']}', '{$_REQUEST['user']}', '{$result}', '{$_REQUEST['tariff']}', '{$comments}'  )"
+"INSERT INTO mpz.orders(lastname, firstname, secondname, phone, address, \"user\", result, tariff, comments, city, longitude, latitude) VALUES ('{$_REQUEST['lastname']}', '{$_REQUEST['firstname']}','{$_REQUEST['secondname']}','{$_REQUEST['phone']}','{$_REQUEST['address']}', '{$_REQUEST['user']}', '{$result}', '{$_REQUEST['tariff']}', '{$comments}', '{$_REQUEST['city']}', {$_REQUEST['longitude']}, {$_REQUEST['latitude']}  )"
 	);
 	
 	pg_close($dbconn);
