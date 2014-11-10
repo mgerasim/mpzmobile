@@ -16,7 +16,7 @@
 	echo "Список заявок";
 	echo "</div>";
 	
-	echo "<table class=\"table table-hover\">";
+	echo "<table class=\"table table-hover table-bordered\">";
 	
 	$dbconn = pg_connect("host=localhost dbname=postgres user=monter password=zaq12wsx")
 	or die('Could not connect: ' . pg_last_error());
@@ -34,11 +34,12 @@
 	echo "	<th>Отчество</th>";
 	echo "	<th>Телефон</th>";
 	echo "	<th>Адрес</th>";
-	echo "	<th>Агент</th>";
+	echo "	<th>Агент</th>";	
 	echo "	<th>Пакет/результат</th>";
 	echo "	<th>Тариф</th>";
 	echo "	<th>Комментарий</th>";
 	echo "	<th>Дата</th>";
+	echo "	<th>Супервайзер</th>";
 	echo "	</thead>";
 	echo "</tr>";
 	
@@ -56,6 +57,7 @@
 		echo "	<td>$row[8]</td>";
 		echo "	<td>$row[9]</td>";
 		echo "	<td>$row[10]</td>";
+		echo "	<td>$row[14]</td>";
 		echo "</tr>";	  
 	}
 	echo "	</tbody>";

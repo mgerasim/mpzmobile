@@ -63,6 +63,9 @@ if ($usluga_count > 1) {
 			}
 			if ($usluga_3 == 'true') {
 				$request = $request.'	<Product SvcClassId="3" TarId="170635" >
+						<tarOptions>
+							<tarOption Id="base_personal"/>
+						</tarOptions>
 						<instAdrPhone>'."{$_REQUEST['phone']}".'</instAdrPhone> 
 						<instAdr> 
 							<RegionId>27</RegionId>  
@@ -71,7 +74,7 @@ if ($usluga_count > 1) {
 			}
 			$request = $request.' </Products>
 					<note>'.$comments.'</note>
-					<ChannelId>17</ChannelId>
+					<ChannelId>27</ChannelId>
 					<OrgId>2004890</OrgId>
 		</order>
 		</orders>
@@ -97,7 +100,7 @@ $request = <<<ABS
                 </instAdr>
             </Product>
 			<note>{$comments}</note>
-            <ChannelId>17</ChannelId>
+            <ChannelId>27</ChannelId>
             <OrgId>123</OrgId>
         </order>
     </orders>
@@ -166,7 +169,7 @@ $dbconn = pg_connect("host=localhost dbname=postgres user=monter password=zaq12w
 	or die('Could not connect: ' . pg_last_error());
 	
 	$ver = pg_query($dbconn,
-"INSERT INTO mpz.orders(lastname, firstname, secondname, phone, address, \"user\", result, tariff, comments, city, longitude, latitude) VALUES ('{$_REQUEST['lastname']}', '{$_REQUEST['firstname']}','{$_REQUEST['secondname']}','{$_REQUEST['phone']}','{$_REQUEST['address']}', '{$_REQUEST['user']}', '{$result}', '{$_REQUEST['tariff']}', '{$comments}', '{$_REQUEST['city']}', {$_REQUEST['longitude']}, {$_REQUEST['latitude']}  )"
+"INSERT INTO mpz.orders(lastname, firstname, secondname, phone, address, \"user\", result, tariff, comments, city, longitude, latitude, \"supervisor\") VALUES ('{$_REQUEST['lastname']}', '{$_REQUEST['firstname']}','{$_REQUEST['secondname']}','{$_REQUEST['phone']}','{$_REQUEST['address']}', '{$_REQUEST['user']}', '{$result}', '{$_REQUEST['tariff']}', '{$comments}', '{$_REQUEST['city']}', {$_REQUEST['longitude']}, {$_REQUEST['latitude']}, '{$_REQUEST['supervisor']}'  )"
 	);
 	
 	pg_close($dbconn);
